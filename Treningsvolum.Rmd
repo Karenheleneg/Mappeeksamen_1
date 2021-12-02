@@ -1,0 +1,254 @@
+---
+title: "Treningsvolum"
+author: "Karen Grøndalen"
+date: "1 12 2021"
+output:
+  word_document: default
+  html_document: default
+editor_options: 
+  chunk_output_type: console
+bibliography: references.bib
+---
+
+# Mixed Models
+
+## INNLEDNING
+
+Styrketrening er ansett som den mest effektive måten å fremme muskelhypertrofi og økning i muskelmasse på [@souza2020]. Det er dog mange variabler som er med på å bestemme om man vil få resultater av styrketrening og det innebærer hvilke type trening, treningsfrekvens, intensitet, volum, «time under tension» (TUT) og tilsyn [@souza2020]. Enkelte mener det er treningsvolumet som har størst effekt på økning i muskelmasse, mens andre peker på at en økning treningsvolum kun er effektivt frem til et visst nivå før det begynner å stagnere [@souza2020].
+
+Tidligere forskning har sett på treningvolum og muskelstyrke og viser sprikende resultater. Enkelte finner en økning i begge grupper, men størst økning ved tre sett eller fler sammenlignet med ett sett [@schoenfeld2019]; [@heaselgrave2019]; [@hackett2018], andre studer har ikke funnet noe signifikant forskjell mellom ett og tre sett [@hass2000]; [@radaelli2014]. Felles for studiene er at de viser at et relativt lavt treningsvolum er tilstrekkelig for å øke muskelhypertrofi [@schoenfeld2019]; [@hass2000]; [@heaselgrave2019]; [@hackett2018]; [@radaelli2014].
+
+Formålet med denne studien er å se på endring i muskelmasse og styrke ved ett sett eller tre sett ettersom tidligere studier viser sprikende resultater.
+
+## METODE
+
+*Deltakere og studieoversikt*
+
+Denne studien rekrutterte til sammen 41 kvinner og menn. Eksklusjonskriterier i studien var; intoleranse for lokal bedøvelse, mer enn én ukentlig styrketreningsøkt, nedsatt muskelstyrke grunnet skade og inntak av reseptbelagt medisin som kunne påvirke treningen. Syv deltakere ble ekskludert av studien grunnet frafall fra planlagte treningsøkter. Alle inkluderte deltakere hadde erfaring fra sportslige aktiviteter og tjue deltakere trente ca. 2 ganger per uke ved påmelding til studien (ingen over 1 styrketreningsøkt i uken).
+
+Intervensjonen bestod av 12 uker med helkropps styrketrening som begynte i perioden september til november. Alle beinøvelser ble utført unilateralt for å kunne skille mellom treningsvolum i den enkelte deltaker. Begge bein ble tilfeldig tildelt å utføre styrketrening med enten ett sett eller tre sett. Alle deltakere utførte altså begge protokoller. Muskelstyrken ble målt ved baseline, under intervensjonene og etter endt treningsintervensjon. Kroppskomposisjon ble målt før og etter treningsintervensjonene.
+
+*Protokoll og styrketester*
+
+En standardisert oppvarmingsrutine ble gjennomført før alle treningsøkter, bestående av 5 min. ergometersykling (12-14RPE), 10 repetisjoner (rep) av hver kroppsvektsøvelse (push-ups, sit-ups, rygghev, knebøy) og ett sett med 10 rep av 1 repetisjon maksimum (RM) for hver øvelse. Rekkefølgen på styrketreningen på ben var som følger; unilateral benpress, leg-curl og kne-ekstensjon (enten ett sett eller tre sett). Protokollen for ett sett ble gjennomført mellom det 2. og det 3. settet av protokollen for tre sett. Etter beinøvelsene utførte alle deltakere to sett hver med bilateral benkpress, nedtrekk og enten skulderpress eller sittende roing. To sistnevnte ble gjennomført annenhver økt. Mellom settene var det en hvileperiode på 90-180 sekunder. Treningsintensiteten ble gradvis økt gjennom intervensjonsperioden, de to første ukene var av 10RM, deretter tre uker med 8RM, og 7RM i de siste syv ukene. For å få plass til treningsøktene i deltakernes hverdag ble enkelte økter gjennomført uten tilsyn, hvor deltakerne deretter måtte loggføre treningene sine som ble sjekket av forskerteamet for å se til at protokollen ble gjennomført. Gjennomsnittlig var 91 av øktene under tilsyn. Fra den niende treningen ble det hver uke gjennomført en økt med redusert vekt (90% av foregående økt). Det ble holdt av minimum 48 timer mellom hver av øktene med maksimal innsats og 24 timer mellom hver økt med submaksimal innsats.
+
+Ved baseline ble 1RM, isokinetisk og isometrisk styrke målinger gjennomført to ganger med minst 4 dager mellom hver. Høyeste oppnådd verdi her ble brukt i analysene. Styrketester var separert med minst 48 timer og et kombinert mål på muskelstyrke ble beregnet som et gjennomsnitt av alle tester (1RM, isometrisk og isokinetisk). DXA-scan ble benyttet til å estimere kroppssammensetning før og etter intervensjonene.
+
+*Dataanalyse og statistikk*
+
+All dataanalyse og statistikk ble gjennomført i R-studio og signifikansnivået ble satt til p = 0.05. For å vurdere effekten av antall sett på muskelhypertrofi og styrke ble lineære modeller benyttet, med relative endringer fra baseline som avhengig variabel og antall sett som den faste hovedeffekten.
+
+## RESULTAT
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE, include=FALSE}
+library(tidyverse)
+library(exscidata)
+library(knitr)
+library(kableExtra)
+library(flextable)
+library(lme4)
+data("strengthvolume")
+
+styrke <- strengthvolume %>% #Endre tabellen for å gjøre analyser
+  group_by(exercise) %>%
+  mutate(scaled.load = load / max(load, na.rm = TRUE)) %>%
+  group_by(participant, time, sex, sets) %>%
+  summarise(combined.load = mean(scaled.load, na.rm = TRUE)) %>%
+  ungroup() %>%
+  pivot_wider(names_from = time, 
+              values_from = combined.load)%>%
+  mutate(endring = ((post - pre) / pre) * 100)%>%
+  print()
+  
+styrke%>% #Regner ut gjennomsnitt og standardavvik mellom settene
+  filter(!is.na(post))%>%
+  group_by(sets)%>%
+  summarise(m = mean(endring),
+            sd = sd(endring))
+
+ lm1 <- lm(post ~ pre + sex + sets, data = styrke)
+ lm2 <- lme4::lmer(post ~ pre + sex + sets + (1|participant), data = styrke)
+ lm3 <- lmerTest::lmer(post ~ pre + sets + sex + (1|participant), data = styrke)
+ 
+  summary(lm3)
+  summary(lm2)
+  summary(lm1)
+  plot(lm1)
+  confint(lm2)
+  confint(lm3)
+  
+  
+```
+
+Konfidensintervall -0.04 til 0.02 mellom ett sett og tre sett, p = 0.03.
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE, include= TRUE, results='hide', ft.align="left", fig.cap= "Figur 1: gjennomsnittlig muskelstyrke fra pre til post, delt inn i antall sett"}
+
+library(tidyverse)
+library(exscidata)
+library(knitr)
+library(kableExtra)
+library(flextable)
+library(lme4)
+data("strengthvolume")
+
+strengthvolume %>%
+  filter(exercise == "legext", time %in% c("pre", "post")) %>%
+  group_by(sets, time) %>%
+  summarise(m = mean(load, na.rm = TRUE), 
+            s = sd(load, na.rm = TRUE)) %>%
+  mutate(time = factor(time, levels = c("pre", "post"), labels = c("Pre-trening", "Post-trening")), 
+         sets = factor(sets, levels = c("single", "multiple"), labels = c("Ett sett", "Tre sett"))) %>%
+  ggplot(aes(time, m, color = sets)) + 
+  
+  geom_errorbar(aes(ymin = m - s, ymax = m + s), 
+                position = position_dodge(width = 0.2), 
+                width = 0.2) +
+  geom_point(position = position_dodge(width = 0.2)) +
+  
+  labs(x = "Tidspunkt", 
+       y = "Snittvekt (kg)", 
+       color = "sets") +
+  
+  theme_bw() + 
+  
+  theme(legend.position = c(0.1, 0.9))
+
+
+```
+
+Figur 1 viser utviklingen i styrke fra pre til post hos hver deltaker ved ett sett og tre sett. Tre sett forskyver seg litt høyere enn ett sett ved post målinger.
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE, include=FALSE}
+library(exscidata)
+data("dxadata")
+library(tidyverse)
+library(ggplot2)
+library(lme4)
+library(lmerTest)
+
+dat <- dxadata%>% #Endringer på datasettet for å gjøre analyser av dataen 
+  select(participant, time, sex, multiple, single, include, lean.left_leg, lean.right_leg)%>%
+  pivot_longer(names_to = "leg",
+               values_to = "lean.mass",
+               cols = lean.left_leg:lean.right_leg) %>%
+  mutate(leg = if_else(leg == "lean.left_leg", "L", "R"),
+         sets = if_else(multiple == leg, "multiple", "single"))%>%
+  select(participant, time, sex, sets, leg, lean.mass)%>%
+  pivot_wider(names_from = time, 
+              values_from = lean.mass) %>%
+  print()
+
+
+#Kjører statistiske tester på dataen for å finne p-verdi og konfidensintervall
+
+m1 <- lmerTest::lmer(post ~ pre + sets + sex + (1|participant), data = dat)
+m2 <- lme4::lmer(post ~ pre + sex + sets + (1|participant), data = dat)
+
+
+summary(m2)
+summary(m1)
+
+confint(m2)
+
+#Plotter dataen for å se om det er et tydelig mønster
+plot(m2)
+plot(m1)
+
+```
+
+Statistiske tester (ANCOVA) viser at det er en signifikant forskjell mellom ett og tre sett (konfidensintervall -215,4 - 13,4 og p-verdi = 0.03). Også her er det signifikant forskjell fra pre til post i begge grupper.
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE, include= TRUE, results='hide', ft.align="left", fig.cap= "Figur 2: Utviklingen av muskelmasse fra pre til post, delt inn i antall sett"}
+
+library(exscidata)
+data("dxadata")
+library(tidyverse)
+library(ggplot2)
+library(lme4)
+library(lmerTest)
+
+figurdat <- dxadata %>% #Endre datasett for å lage et plot
+  select(participant:include, lean.left_leg, lean.right_leg) %>%
+  pivot_longer(names_to = "leg", 
+               values_to = "lean.mass", 
+               cols = lean.left_leg:lean.right_leg) %>%
+   mutate(leg = if_else(leg == "lean.left_leg", "L", "R"), 
+         sets = if_else(multiple == leg, "multiple", "single")) %>%
+  select(participant, time, sets, sex, leg, lean.mass) %>%
+  group_by(participant) %>%
+  mutate(n = n(), group = factor(sets, levels = c("single", "multiple")), time = factor(time, levels = c("pre", "post")))
+
+figurdat%>% #Plott hver deltaker fra pre til post i begge grupper (ett sett og tre sett)
+ggplot(aes(time, lean.mass, group = paste(participant, group), color = group)) + geom_line() + theme_minimal()
+
+
+  
+
+
+```
+
+Figur 2 viser forskjellen fra pre til post hos hver deltaker fordelt i ett sett og tre sett.
+
+Resultatene viser at det er en 31% endring i muskelstyrke hvor det er blitt utført flere sett og en 24.5% endring ved enkeltsett. P = 0.03, en signifikant forskjell mellom ett og tre sett.
+
+Konfidensintervallet fra ett sett til tre sett går ikke gjennom 0 (-215, -13) og forskjellen mellom gruppene i målt muskelmasse er dermed signifikant.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, include=FALSE, results="hide"}
+library(tidyverse)
+dat <- dxadata %>%  # endre tabellen for å gjøre utregninger
+  select(participant:include, lean.left_leg, lean.right_leg) %>%
+  pivot_longer(names_to = "leg", 
+               values_to = "lean.mass", 
+               cols = lean.left_leg:lean.right_leg) %>%
+  mutate(leg = if_else(leg == "lean.left_leg", "L", "R"), 
+         sets = if_else(multiple == leg, "multiple", "single")) %>%
+  select(participant, time, sets, sex, leg, lean.mass) %>%
+  
+  pivot_wider(names_from = time, # Regner ut endring (%)
+              values_from = lean.mass) %>%
+  mutate(lbm.change = post - pre) %>%
+  mutate(pre.mc = pre - mean(pre)) %>% 
+  mutate(prosentvis.endring = ((post - pre) / pre) * 100) %>%
+  filter(!is.na(lbm.change)) 
+  
+  
+  
+dat %>%   # Regner ut gjennomsnittlig endring per gruppe (%)
+  group_by(sets) %>%
+  summarise(m = mean(prosentvis.endring),
+            sd = sd(prosentvis.endring)) 
+library(lme4)
+library(lmerTest)
+m0 <- lm(post ~ pre + sex + sets, data = dat) #gjør en analyse
+summary(m0)
+plot(m0)
+```
+
+```{r Prosentvis økning figur dexa, echo=FALSE, message=FALSE, warning=FALSE, include=TRUE, results="hide", fig.cap = "Figur 3 viser endring i prosent ved multiple- sett og single- sett"}
+figurdat2 <- dat %>%
+  group_by(sets) %>%
+  summarise(m = mean(prosentvis.endring, na.rm = TRUE),
+            sd = sd(prosentvis.endring, na.rm = TRUE)) %>%
+  print()
+
+figurdat2 %>%
+  
+ggplot(aes(sets, m)) + geom_point() + geom_line() + geom_errorbar(aes(ymax = m + sd, ymin = m - sd, width = 0.2), color = "black") + geom_line(data = dat, aes(sets, prosentvis.endring, group = participant), alpha = 2, color = "white") +
+labs(x = "Sett",
+     y = "Endring (%)")
+```
+
+Figur 3 viser prosentvis endring ved ett sett (single) og tre sett (multiple), hele gruppen fremstilt ved gjennomsnitt og standardavvik (sort) og endringen til hver deltaker (hvit).
+
+## DISKUSJON/KONKLUSJON
+
+Hovedfunnene i denne studien viser at det er en større økning i muskelstyrke og i muskelmasse ved å utføre tre sett enn ett sett i en 12 ukers treningsperiode. Disse funnene støtter opp under flere andre studer som har sett på tre sett versus ett sett [@heaselgrave2019]; [@schoenfeld2019]; [@hackett2018].
+
+Med signifikante forskjeller mellom grupper på både styrkeøkning (p=0.03) og muskelmasse (p=0.03) kan man i denne studien se at flere sett er lønnsomt dersom man ønsker økt muskelstyrke og muskelmasse. Det er dog også signifikante endringer fra pre til post i begge grupper, noe som støtter opp mot andre studier [@[] som har funnet at ett sett er nok til å oppnå styrkeøkning hos både utrente og mer trente individer.
+
+Enkelte studier har på en annen side ikke funnet noe signifikant forskjell ett sett og tre sett [@radaelli2014]; [@hass2000]. Det kan være ulike årsaker til dette, som forskjeller i treningsprotokoll, alder og treningsstatus før intervensjon. En tydelig forskjell på Radaelli et al (2014) og denne studien er nettopp alderen til deltakerne. Radaelli et al. (2004) undersøkte eldre kvinner som ikke var kjent med styrketrening fra før, og som nevnt i [@souza2020] vil man som utrent få en rask fremgang og økt volum vil ikke påvirke endring i muskelstyrke i startfasen av trening.
+
+En annen viktig faktor å ta med er antall deltakere i de respektive studiene nevnt her (KILDER). Heaselgrave et al. (2019) peker på at få deltakere i deres studie antakeligvis har påvirket resultatene.
+
+## REFERANSER

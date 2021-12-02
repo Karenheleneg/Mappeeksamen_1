@@ -1,0 +1,61 @@
+---
+title: "Vitenskapsteori"
+author: "Karen Grøndalen"
+date: "1 12 2021"
+output:
+  word_document: default
+  html_document: default
+bibliography: references.bib
+---
+
+# ARBEIDSKRAV VITENSKAPSTEORI
+
+Kvantitativ metode og statistikk (IDR4000), høst 2021.
+
+Antall ord: 1697
+
+## Falsifikasjonisme
+
+Karl popper var en vitenskapsfilosof med ideer om falsifikasjonisme/kritisk rasjonalisisme [@dellsenVitenskapeligeTeorier]. Han mente at alle induksjoner var verdiløse og at deduktive argument var de eneste som ble benyttet i vitenskapen [@dellsenVitenskapeligeTeorier]. Hans ideer om falsifikasjonisme gikk ut på at man benyttet data fra for eksempel observasjoner eller eksperimenter til å motbevise tidligere teorier, ikke for å bekrefte teorier. Karl Popper mente at for å skille mellom vitenskapelige teorier og ikke-vitenskapelige teorier (pseudovitenskap) så måtte man se på om den vitenskapelige teorien var falsifiserbar eller ikke [@dellsenVitenskapeligeTeorier]. Dersom en kunne falsifisere en teori, altså på et eller annet tidspunkt vil det være mulig å motbevise/falsifisere den gitte teorien vil det være en vitenskapelig teori [@dellsenVitenskapeligeTeorier]. Falsifiserbarhetskriteriet er en løsning på, eller svar på om en teori er vitenskapelig eller ikke. Karl Popper mente altså at man aldri kan bekrefte en vitenskapelig teori, kun avkrefte den. Han mente også at vitenskapelige teorier ikke brukte induksjon. [@dellsenVitenskapeligeTeorier].
+
+Poppers svar på sentrale spørsmål som hva det er å være en god vitenskapelig teori, var altså at en god vitenskapelig teori er en falsifiserbar teori [@dellsenVitenskapeligeTeorier]. I motsetning til andre vitenskapsfilosofer som mente at det er et tydelig skille mellom vitenskapelige og uvitenskapelige teorier annet enn godt og dårlig bekreftede teorier, mente Popper at kun en falsifiserbar teori er en vitenskapelig teori [@dellsenVitenskapeligeTeorier].
+
+Carl Hempel var en tysk vitenskapsfilosof som var uenig i Popper og mente at vitenskapene brukte induksjon. Hempel argumenterte for en form av den hypotetisk deduktive metoden (HD-metoden) [@dellsenVitenskapeligArgument]. Carl Hempel mente at det fantes metoder for å bekrefte eller begrunne vitenskapelige teorier og det var ved hjelp av HD-metoden. Ved å benytte HD-metoden trenger man ifølge Hempel altså ikke å finne ut om en teori er falsifiserbar eller ikke for å forstå om det er en vitenskapelig teori eller ikke. En kontekst i HD-metoden er begrunnelseskonteksten, og en vitenskapelig teori kan ifølge HD-metoden og Hempel bli bekreftet eller begrunnet av data. [@dellsenVitenskapeligArgument]. 
+
+Popper mente altså at en vitenskapelig teori kun kan falsifiseres, aldri bekreftes, og at teorier som ikke kan falsifiseres ikke er vitenskapelige teorier [@dellsenVitenskapeligeTeorier]. Hempel på den andre siden mente at det fantes måter å bekrefte vitenskapelige teorier på ved å se på dataen som er samlet inn til den gitte teorien [@dellsenVitenskapeligArgument].
+
+Det er vanskelig å si hvem som har rett og hvem som tar feil i denne sammenheng. Det kan godt være slik at Popper har rett i mange av sine argument, ettersom vi umulig kan vite om teorien vi stoler på i dag faktisk er rett og det kan være stor sannsynlighet for at de blir falsifisert i fremtiden. På den andre siden mener jeg selv det er feil å si at ingen teorier kan bekreftes, og at det ville være skummelt å aldri stole på noen vitenskapelige teorier som finnes. Hempels argument med at teorier kan bekreftes av data er det jeg selv mener er mest korrekt i denne sammenheng. Selv om det er sannsynlig at enkelte teorier vil bli motbevist i fremtiden er det viktig å stole til en viss grad på data og teorier som blir formulert i dag.
+
+ 
+
+## HD-metoden og abduksjon/Bayesisme
+
+Den hypotetisk-deduktive metoden (HD-metoden) er en metode hvor man bekrefter en teori gjennom å få positive resultat når vi tester teoriens deduktive konsekvenser, altså tester man de garantert bekreftede (deduktive) konsekvensene av en teori [@dellsenVitenskapeligArgument]. HD-metoden er delt inn i to «kontekster», hvor 1) oppdagelseskonteksten omhandler forholdene hvor en teori er oppdaget eller foreslått i vitenskapen og bestemmer hvilke teorier som blir formulert og diskutert i vitenskapen og 2) begrunnelseskonteksten er forholdene hvor en vitenskapelig teori blir bekreftet eller begrunnet av data, denne konteksten bestemmer hvilke teorier som blir ansett som sanne eller sannsynlige [@dellsenVitenskapeligArgument]. Lettere sagt er oppdagelseskonteksten den delen hvor man oppdager en teori gjennom for eksempel en tanke, en drøm (fantasien), og begrunnelseskonteksten er delen hvor man tester denne teorien for å se om den er sann.
+
+HD-metoden er en fire-trinns metoden for å bekrefte en teori. Trinn 1 i denne metoden er å formulere en teori eller en hypotese. I trinn 2 vil man utlede empiriske konsekvenser av denne teorien eller hypotesen og i trinn 3 vil man teste disse empiriske konsekvensene i enten observasjon eller i et eksperiment. Dersom man i trinn 3 kommer frem tilat de empiriske konsekvensene er korrekte, vil teorien i trinn 4, være induktivt bekreftet til en viss grad. [@dellsenVitenskapeligArgument].
+
+Et argument er summen av antakelsene/premissene og konklusjonen. Et premiss er de påstandene man kommer med som antas å være korrekte, kan sees på som teorien eller hypotesen, mens konklusjonen er den vitenskapelige teorien som premissene er ment å støtte. [@dellsenVitenskapeligeTeorier].
+
+I følge den hypotetisk deduktive metoden (HD-metoden) er et bekreftende vitenskapelig argument et deduktivt argument lagt opp fra teorien bak dataen, ved å dedusere data fra teorien [@dellsenVitenskapeligArgument]. I et bekreftende vitenskapelig argument benyttes teorien for å skape deduktive argumenter for hvordan dataen skal bekrefte teorien. Gjennom å dedusere data fra teorien kan teorien bekreftes til en viss grad. Carl Hempel [@hempel1966] mente at man kunne utlede vitenskapelige argument på en mer effektiv måte ved å ta utgangspunkt i teorien i stedet for f.eks. utgangspunkt i observasjoner.
+
+HD-metoden er altså en metode for å bekrefte teorier, hvor Hempel ønsket å argumentere for og bekrefte teorier [@hempel1966]. Til sammenligning var Karl Poppers metode (falsifikasjonisme) en metode for å skille vitenskapelige fra ikke-vitenskapelige teorier, samt å argumentere mot teorier og falsifisere dem (Karl R Popper 1972).
+
+Abduksjon er i likhet med HD-metoden en metode hvor man tar utgangspunkt i en teori, deretter forklarer hvilke observasjoner man forventer å se, for så å induktivt bekrefte teorien ved å sammenligne de faktiske observasjoner med forventede observasjoner [@dellsenAbduksjonOgSannsynlighet]. Til forskjell fra HD-metoden vil man ved abduksjon ha et større fokus på å unngå deduksjon [@dellsenAbduksjonOgSannsynlighet]. Abduksjonen forsøker å induktivt bekrefte teorier til en viss grad ved å danne empiriske konsekvenser som kan studeres videre i eksperimenter.
+
+Abduksjon skiller seg dog fra HD-metoden ved at man her kan se på flere ulike teorier, mens man i HD-metoden kun kan bruke én teori. Man vil ved abduksjon sammenligne flere ulike teorier før man velger den ene teorien som forklarer observasjonene på best mulig måte [@dellsenAbduksjonOgSannsynlighet]. Abduksjon vil også kunne være en mer effektiv metode enn HD-metoden da den kan ta for seg flere ulike teorier. Hvor man i HD-metoden ser på én hypotese vil man altså ved abduksjon ta i bruk flere teorier og sammenligne disse til man kommer frem til den som passer best til det man observerer [@dellsenAbduksjonOgSannsynlighet].
+
+## Replikasjonskrisen
+
+Et stort problem i mange vitenskaper er at resultatene ikke repliseres eller er repliserbare. Replikasjon er å gjøre en undersøkelse flere ganger for å teste om resultatene er de samme eller lignende ved gjentatte forsøk [@dellsenSannsynlighetOgReplikasjonskrisen]. Replikasjonskrisen viser til en økt oppmerksomhet på dette problemet på 2000-tallet, og undersøkelser har vist at mindre enn halvparten av resultatene i flere vitenskaper ikke repliseres/gjøres gjentatte forsøk for å se på resultatet [@dellsenAbduksjonOgSannsynlighet].
+
+Aleksander Bird er en vitenskapsfilosof som har sett mye på replikasjonskrisen og har kommet med sin forklaring på denne krisen [@dellsenAbduksjonOgSannsynlighet]. Bird mener replikasjonskrisen bunner i en og kan forklares ved basefrekvensfeil [@dellsenAbduksjonOgSannsynlighet].  
+
+Bird mener replikasjonskrisen oppstår fordi mange godt bekreftede resultater ofte blir omgjort på et senere tidspunkt når andre forsøker å gjenskape de samme resultatene [@bird2020]. Han peker på at mye kan av replikasjonskrisen kan skyldes dårlig vitenskap, med tvilsom forskningspraksis, at enkelte unnlater å publisere negative resultater, dårlige insentiver og svindel. Bird argumenterer for at den høye andelen av mislykkede replikasjoner i vitenskapen også stemmer overens med høy-kvalitetsforskning [@bird2020] Han peker også på at vitenskapsfelt som fra før har en høy andel av falske hypoteser før testing/eksperimenter også vil produsere en hel del falske konklusjoner som da støtter opp mot deres falske hypotese [@bird2020]. Sagt på en annen måte vil altså en del vitenskaper og forskningsprosjekt ha en falsk hypotese, altså stemmer ikke hypotesen, men grunnet forskningsmetoder vil disse vitenskapene komme frem til en konklusjon som støtter hypotesen, selv om både hypotese og konklusjon er feilaktig.
+
+Bird mener at mange vitenskaper unngår å anse basefrekvensfeilen og dermed produserer og publiserer mange feilaktige studier [@bird2020]. Bird argumenterer videre for at falske hypoteser i forkant av testing vil føre 5% type-1 feil og at dette skyldes basefrekvensfeilen. Bird anser altså repliksjonskrisen som bunnet i at mange hypoteser er falske og dermed publiserer et falskt resultat, og at det er den opprinnelige studien som ikke lar seg replisere som ikke er blitt riktig utført. Bird mener også at denne basefrekvensfeilen er en plausibel/akseptabel diagnose av repliksjonskrisen og at dette burde bli tatt i betraktning ved videre forskning [@bird2020].
+
+Basefrekvensfeilen som Bird sikter til kan forklares ved at en forsker på/undersøker ett gitt fenomen, og ved å kun anse en enkelt teori, eller et enkelt bevis, vil denne basefrekvensfeilen oppstå. Dersom man for eksempel skal undersøke styrken til en test som ser på et sjeldent fenomen, og testen fremstår som god i de tilfellene hvor fenomenet oppstår, men man overser sannsynligheten for at fenomenet i det hele tatt skal oppstå når det sammenlignes på populasjonsnivå, sannsynligheten for at testen faktisk finner fenomenet eller det resultatet man undersøker vil da være påvirket i stor grad. [@dellsenSannsynlighetOgReplikasjonskrisen].
+
+Andre forklaringer på replikasjonskrisen er også blitt forsøkt, og flere mener at å senke alfaverdien (p-verdien som til vanlig er på 0.05) vil kunne bedre replikasjonskrisen [@Bird2020]. Bird peker derimot på at det ikke finnes en gitt p-verdi som kan være universell for alle vitenskaper [@Bird2020]. Enkelte kan jobbe med en svært lav p-verdi, som for eksempel fysikk [@Bird2020], mens for andre som for eksempel idrettsforskning hvor antallet deltakere i studien ofte er lav, vil det være vanskelig å benytte seg av en så lav P-verdi. Med tanke på at det vil være vanskelig å ha en universell lav P-verdi på for eksempel 0.005 på tvers av vitenskaper, vil Bird (2020) sin forklaring på replikasjonskrisen kanskje være bedre enn hva andre har fått til å forklare med.
+
+## Referanser
